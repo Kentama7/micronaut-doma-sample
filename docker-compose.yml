@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+  app:
+    image: micronaut-doma-sam
+    ports:
+      - 8080:8080
+    environment:
+      TZ: Asia/Tokyo
+      MICRONAUT_ENVIRONMENTS: dev
+      APP_DATASOURCES_DEFAULT_URL: jdbc:postgresql://db:5432/dvdrental
+      APP_DATASOURCES_DEFAULT_USERNAME: postgres
+      APP_DATASOURCES_DEFAULT_PASSWORD: password
+    depends_on:
+      - db
+  db:
+    image: postgres:11.4
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: dvdrental
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    volumes:
+      - ./data:/var/lib/postgresql/data
+      - ./sql:/docker-entrypoint-initdb.d
