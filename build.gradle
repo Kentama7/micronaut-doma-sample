@@ -47,6 +47,8 @@ dependencies {
     implementation "org.seasar.doma:doma:2.25.1"
     kapt "org.seasar.doma:doma:2.25.1"
     runtimeOnly "org.postgresql:postgresql:42.2.6"
+    // hikariCP
+    runtimeOnly 'io.micronaut.configuration:micronaut-jdbc-hikari'
 }
 
 test.classpath += configurations.developmentOnly
