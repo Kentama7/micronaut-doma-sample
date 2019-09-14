@@ -8,11 +8,12 @@ import javax.inject.Singleton
 
 @Singleton
 class CountryService(
-        private val countryDao: CountryDao
+    private val config: DomaConfig,
+    private val countryDao: CountryDao
 ) {
 
     fun findAll(): List<Country> {
-        val tm = DomaConfig.transactionManager
+        val tm = config.transactionManager
         return tm.required(Supplier {
             countryDao.findAll()
         })

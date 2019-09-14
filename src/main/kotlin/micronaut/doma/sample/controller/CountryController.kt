@@ -6,9 +6,14 @@ import micronaut.doma.sample.service.CountryService
 
 @Controller
 class CountryController(
-        private val countryService: CountryService
+    private val countryService: CountryService
 ) {
 
     @Get
     fun index() = countryService.findAll()
+
+    @Get("kato")
+    fun kato(): String {
+        return "kato"
+    }
 }
